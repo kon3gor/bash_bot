@@ -3,7 +3,8 @@
 function getTextField() {
 	json="$1"
 	field="$2"
-	map=$(echo "$json" | egrep -oh "$field\":\"(\/|\w|[[:space:]])*\"")
+	#map=$(echo "$json" | egrep -oh "$field\":\"(\/|\w|[[:space:]]|[0-9]|\.)*\"")
+	map=$(echo "$json" | egrep -oh "$field\":\"[^\"]*\"")
 	result=$(echo "$map" | awk -F ":" '{print $2}' | tr -d '"')
 	echo "$result"
 }
